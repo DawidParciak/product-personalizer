@@ -1,14 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'
 import App from './App';
 
 import './styles/normalize.scss';
 import './styles/global.scss';
 import 'font-awesome/css/font-awesome.min.css';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
-      <App />
+    <App />
   </React.StrictMode>,
-  document.getElementById('root')
 );
+
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//       <App />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
