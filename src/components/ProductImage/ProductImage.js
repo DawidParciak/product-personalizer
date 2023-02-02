@@ -1,6 +1,6 @@
 import styles from './ProductImage.module.scss';
 
-const ProductImage = (props) => {
+const ProductImage = props => {
   return (
     <div className={styles.imageContainer}>
       <img 

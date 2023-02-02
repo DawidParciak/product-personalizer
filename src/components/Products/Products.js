@@ -9,7 +9,7 @@ const Products = () => {
     <section>
       {products.map(product => 
         <Product{...products[product.id - 1]} key={product.name} /> 
-      )};
+      )}
     </section>
   );
 };
