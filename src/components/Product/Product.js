@@ -13,16 +13,22 @@ const Product = props => {
     return props.basePrice + currentSizePrice;
   }
 
+  const formatCurrency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+
+  const formatedPrice = formatCurrency.format(getPrice());
+
   const shirtInBasket = (event) => {
     event.preventDefault();
-    return (
-      console.log('Summary'),
-      console.log('========='),
-      console.log('Name: ', props.title),
-      console.log('Price: ', getPrice()),
-      console.log('Size: ', currentSize),
-      console.log('Color: ', currentColor)
-    )
+
+    console.log('Summary');
+    console.log('=========');
+    console.log('Name: ', props.title);
+    console.log('Price: ', getPrice());
+    console.log('Size: ', currentSize);
+    console.log('Color: ', currentColor);
   }
 
   return (
@@ -34,7 +40,7 @@ const Product = props => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price: {getPrice()}$</span>
+          <span className={styles.price}>{formatedPrice}</span>
         </header>
         <ProductForm 
           onClick={props.onClick}
@@ -54,6 +60,5 @@ const Product = props => {
     </article>
   );
 };
-
 
 export default Product
