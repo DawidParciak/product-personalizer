@@ -2,18 +2,18 @@ import styles from './OptionSize.module.scss';
 
 const OptionSize = props => {
 
-	const foo = (size) => {
+	const setSize = (size) => {
 		props.setCurrentSize(size.name);
 		props.setCurrentSizePrice(size.additionalPrice);
 	}
 
-	const bar = (size) => {
-		const maybeClassName = size.name === props.currentSize && styles.active;
+	const sizeClassNames = (size) => {
+		const sizeClasses = size.name === props.currentSize && styles.active;
 
-		if(!maybeClassName) {
+		if(!sizeClasses) {
 			return '';
 		}
-		return maybeClassName
+		return sizeClasses
 	};
 
 	return (
@@ -24,8 +24,8 @@ const OptionSize = props => {
 					<li key={'size' + i}>
 						<button 
 							type="button" 
-							onClick={() => foo(size)} 
-							className={bar(size)}>
+							onClick={() => setSize(size)} 
+							className={sizeClassNames(size)}>
 							{size.name}
 						</button>
 					</li>
