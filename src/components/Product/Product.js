@@ -1,5 +1,5 @@
 import styles from './Product.module.scss';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
 import ProductForm from '../ProductForm/ProductForm';
 
@@ -9,16 +9,20 @@ const Product = props => {
   const [currentSize, setCurrentSize] = useState('S');
   const [currentSizePrice, setCurrentSizePrice] = useState(props.sizes[0].additionalPrice);
 
-  const getPrice = () => {
-    return props.basePrice + currentSizePrice;
-  }
+  const getPrice = (a, b) => {
+    return a + b;
+  };
+
+  const totalPrice = useMemo(() => 
+    getPrice(props.basePrice, currentSizePrice), [props.basePrice, currentSizePrice]
+  );
 
   const formatCurrency = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   });
 
-  const formatedPrice = formatCurrency.format(getPrice());
+  const formatedPrice = formatCurrency.format(totalPrice);
 
   const shirtInBasket = (event) => {
     event.preventDefault();
@@ -26,10 +30,10 @@ const Product = props => {
     console.log('Summary');
     console.log('=========');
     console.log('Name: ', props.title);
-    console.log('Price: ', getPrice());
+    console.log('Price: ', totalPrice);
     console.log('Size: ', currentSize);
     console.log('Color: ', currentColor);
-  }
+  };
 
   return (
     <article className={styles.product}>
